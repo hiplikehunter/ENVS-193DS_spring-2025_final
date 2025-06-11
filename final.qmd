@@ -5,23 +5,58 @@ format: html
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Set Up
 
 ```{r}
-1 + 1
+
 ```
 
-You can add options to executable code like this
+## Problem 1. Research writing
 
-```{r}
-#| echo: false
-2 * 2
-```
+a\. Transparent statistical methods
 
-The `echo: false` option disables the printing of code (only output is displayed).
+In part 1, they used a simple linear regression. In part 2, they used an ANOVA test.
+
+b\. More information needed
+
+They could include summary statistics for each source in order to show which groups averages are larger or smaller than others. They could have also included a Cohen's D to explain effect sizes, which show how large a difference is, as we already know a difference exists.
+
+c\. Suggestions for rewriting
+
+We found a significant difference in average nitrogen load (kg / year) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands).
+
+## Problem 2. Data Visualization
+
+a\. Cleaning and summarizing
+
+b\. Visualize the data
+
+## Problem 3. Data analysis
+
+a\. Response variable
+
+b\. Purpose of study
+
+c\. Difference in "seasons"
+
+d\. Table of models
+
+e\. Run the models
+
+f\. Check the diagnostics
+
+g\. Select the best model
+
+h\. Visualize the model predictions
+
+i\. Write a caption for your figure
+
+j\. Calculate model predictions
+
+k\. Interpret your results
+
+## Problem 4. Affective and exploratory visualizations
+
+a\. Comparing visualizations
+
+b\. Sharing your affective visualization
