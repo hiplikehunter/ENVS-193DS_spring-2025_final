@@ -23,7 +23,7 @@ They could include summary statistics for each source in order to show which gro
 
 c\. Suggestions for rewriting
 
-We found a significant difference in average nitrogen load (kg / year) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands).
+We found a significant difference in average nitrogen load (kg / year) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). We found a medium (Cohen's D = effect size) effect between source x (n = amount of data points) and source y (n = amount of data points) (ANOVA (5, degrees of freedom) = F-value, p-value = p, $\alpha$ = significance level.
 
 ## Problem 2. Data Visualization
 
