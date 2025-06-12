@@ -8,7 +8,18 @@ editor: visual
 ## Set Up
 
 ```{r}
-
+library(tidyverse)
+library(janitor)
+library(here)
+library(flextable)
+library(readxl)
+library(png)
+library(grid)
+library(dplyr)
+library(gt)
+library(ggplot2)
+library(lubridate)
+sst <- read.csv("/Users/huntersteinle/Downloads/ENVS-193DS/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
 ```
 
 ## Problem 1. Research writing
@@ -28,6 +39,18 @@ We found a significant difference in average nitrogen load (kg / year) between s
 ## Problem 2. Data Visualization
 
 a\. Cleaning and summarizing
+
+```{r}
+sst_clean <- sst |> 
+  select(date, temp) |> 
+  mutate(date = ymd(date)) |> 
+  filter(year(date) >= 2018 & year(date) <= 2023) |> 
+  mutate(month = floor_date(date, "month")) |> 
+  group_by(month) |> 
+  summarize(total_temp = sum(temp, na.rm = TRUE))
+
+slice_sample(sst_clean,n=5)
+```
 
 b\. Visualize the data
 
