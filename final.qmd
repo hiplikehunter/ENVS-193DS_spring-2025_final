@@ -20,6 +20,7 @@ library(gt)
 library(ggplot2)
 library(lubridate)
 sst <- read.csv("/Users/huntersteinle/Downloads/ENVS-193DS/ENVS-193DS_spring-2025_final/data/SST_update2023.csv")
+nest_boxes <- read.csv("/Users/huntersteinle/Downloads/ENVS-193DS/ENVS-193DS_spring-2025_final/data/occdist.csv")
 ```
 
 ## Problem 1. Research writing
@@ -45,24 +46,52 @@ sst_clean <- sst |>
   select(date, temp) |> 
   mutate(date = ymd(date)) |> 
   filter(year(date) >= 2018 & year(date) <= 2023) |> 
-  mutate(month = floor_date(date, "month")) |> 
-  group_by(month) |> 
-  summarize(total_temp = sum(temp, na.rm = TRUE))
+  mutate(month = month(date)) |> 
+  mutate(year = year(date)) |> 
+  group_by(month, year) |> 
+  summarize(total_temp = mean(temp, na.rm = TRUE))
 
 slice_sample(sst_clean,n=5)
 ```
 
 b\. Visualize the data
 
+```{r}
+ggplot(sst_clean,
+       aes(x = month,
+           y = total_temp,
+           color = factor(year))) +
+         geom_line() +
+  geom_point() +
+  scale_x_continuous(breaks = 1:12, labels = month.abb) +
+  scale_color_manual(values = c("2018" = "#79fff9", "2019" = "#69ded8", "2020" = "#5bbfba", "2021" = "#4ea4a0", "2022" = "#408582", "2023" = "#2b5d5b")) +
+  labs(title = NULL,
+       x = "Month",
+       y = "Mean monthly sea surface temperature (°C)",
+       color = "Year") +
+    theme(panel.background = element_rect(fill = "white", color = "black", size = 0.4),
+          legend.position = c(0.1, 0.7),
+          legend.key = element_blank(),
+          legend.background = element_rect(fill = "white"))
+```
+
 ## Problem 3. Data analysis
 
 a\. Response variable
 
+The 1s and 0s represent either the presence or absence of a specific species of bird in a nesting box. At least one occupation means a 1, and none means a 0.
+
 b\. Purpose of study
+
+Swift Parrots are the target species of the study in which the researchers are hoping will take up in the nesting boxes. The other species, Common Starlings & Tree Martins, are competitor species designated as non-targets for this study.
 
 c\. Difference in "seasons"
 
+The two seasons/years are 2016 and 2019. When first deploying these nest boxes in 2016, the researchers were unaware of birds habits so they went back to measure in 2019.
+
 d\. Table of models
+
+I cannot log in and examine this doi article. UCSB is not listed under Institutional login page. I am very lost with only reading the abstract and not the introduction and methods and am not willing to pay the paywall fee.
 
 e\. Run the models
 
@@ -81,5 +110,21 @@ k\. Interpret your results
 ## Problem 4. Affective and exploratory visualizations
 
 a\. Comparing visualizations
+
+-   How are the visualizations different from each other in the way you have represented your data?
+
+For my exploratory visualization, I used two box plots, whereas I used a rounded bar chart for my affective visualization. They are different in the way they are set up, either vertically, or around in a circle.
+
+-   What similarities do you see between all your visualizations?
+
+My visualizations are similar in the sense that there are two main groups being represented.
+
+-   What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+
+Counts are represented in both, with a jitter plot in the exploratory and amount of bars in the affective. Relationships between variables are more obvious within the exploratory visualization and the means and medians are shown here. The affective visualization shows the ascending order of observations.
+
+-   What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
+
+I used feedback for associating my biking pace data with a photo of my bike. I ended up incorporating this feedback and superimposing my circular plots onto my bike photo.
 
 b\. Sharing your affective visualization
